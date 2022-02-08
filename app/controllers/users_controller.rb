@@ -5,7 +5,15 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
-    @user.update(user_param)
+  end
+
+  def update
+    @user = User.find(params[:id])
+    if @user.update(user_param)
+      redirect_to @user
+    else
+      render 'new'
+    end
   end
 
   def create
